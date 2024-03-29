@@ -51,7 +51,7 @@ class ordersController {
               arrProducts.push({ main_shelf:MainSelf,product:product_name,pruduct_id:ordersSQL.rows[w].product_id, quantity:ordersSQL.rows[w].quantity, shelfes:arrOrderProductShelf});
             }
           }
-          arrOrders.push({order:orderFOR,products:arrProducts})
+          arrOrders.push({order:orderFOR,products:arrProducts});
         }
         let arrShelfReturn =[];
         for(let q=0;q<shelfSQL.rows.length;q++){
