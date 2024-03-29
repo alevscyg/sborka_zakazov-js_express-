@@ -3,26 +3,14 @@ const db = require('../db');
 class ordersController {
     
     async getOrders(req,res){
-        const {order} = req.body;
-        const ordersSQL = await db.query('select * from "Orders" where "order" IN '+'('+order.join(', ')+') ;');
-        let arrProductId = [];
-        ordersSQL.rows.forEach(el => {
-          if(arrProductId.includes(el.product_id)===false){
-            arrProductId.push(el.product_id);
-          }
-        });
-        const productSTR = '('+arrProductId.join(', ')+') ;'
-        const productsSQL = await db.query('select * from "Products" where "id" IN '+productSTR);
-        const productsshelfSQL = await db.query('select * from "ProductsShelves" where "product_id" IN'+productSTR);
-        let arrShelfId = [];
-        productsshelfSQL.rows.forEach(el =>{
-          if(arrShelfId.includes(el.shelf_id)===false){
-            arrShelfId.push(el.shelf_id);
-          }
-        })
-        const shelfSQL = await db.query('select * from "Shelves" where "id" IN' +'('+arrShelfId.join(', ')+') ;');
-        //////
-        let arrOrders =[];
+      let {order} = req.body;
+      let ordersSQL = await db.query('select * from "Orders" where "order" IN '+'('+order.join(', ')+') ;');
+      let productSTR  = '('+Array.from(new Set(ordersSQL.rows.map(orders =>orders.product_id))).join(', ')+') ;'
+      let productsSQL = await db.query('select * from "Products" where "id" IN '+productSTR);
+      let productsshelfSQL = await db.query('select * from "ProductsShelves" where "product_id" IN'+productSTR);
+      let ShelfSTR = '('+Array.from(new Set(productsshelfSQL.rows.map(productsshelfSQL =>productsshelfSQL.shelf_id))).join(', ')+') ;'
+      let shelfSQL = await db.query('select * from "Shelves" where "id" IN' +ShelfSTR);
+      let arrOrders =[];
         order.forEach(orderelQ=>{
           let arrProducts = [];
           const orderFOR = Number(orderelQ);
@@ -74,9 +62,7 @@ class ordersController {
           }
         });
         res.json(arrShelfReturn);
-
-       
-      
+        
   }
 }
 module.exports = new ordersController();
