@@ -48,7 +48,7 @@ class ordersController {
           arrOrders.forEach(arrOrdersElW=>{
             arrOrdersElW.products.forEach(arrOrdersElWElE=>{
               if(arrOrdersElWElE.main_shelf==shelfElQ.id){
-                if(arrOrdersElWElE.shelfes.length===0){
+                if(arrOrdersElWElE.shelfes.length==0){
                   arrProductReturn.push( '----'+' '+`${arrOrdersElWElE.product}` + ` (id=${arrOrdersElWElE.pruduct_id})`, `заказ ${arrOrdersElW.order}` +', '+`${arrOrdersElWElE.quantity} шт` );
                 }
                 else{
