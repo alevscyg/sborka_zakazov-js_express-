@@ -7,4 +7,4 @@ const pool = new Pool ({
     database:"Products_test"
 })
 
-module.exports = pool
+module.exports = pool;
