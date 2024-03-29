@@ -13,7 +13,6 @@ class ordersController {
           }
         }
         const productsSQL = await db.query('select * from "Products" where "id" IN '+'('+arrProductId.join(', ')+') ;');
-        const products = productsSQL.rows;
         const productsshelfSQL = await db.query('select * from "ProductsShelves" where "product_id" IN'+'('+arrProductId.join(', ')+') ;');
         let arrShelfId = [];
         for(let q =0;q<productsshelfSQL.rows.length;q++){
@@ -45,9 +44,9 @@ class ordersController {
                 }
               }
               let product_name = [];
-              for(let e =0;e<products.length;e++){
-                if(ordersSQL.rows[w].product_id===products[e].id){
-                  product_name.push(products[e].product);
+              for(let e =0;e<productsSQL.rows.length;e++){
+                if(ordersSQL.rows[w].product_id===productsSQL.rows[e].id){
+                  product_name.push(productsSQL.rows[e].product);
                 }
               }
               arrProducts.push({ main_shelf:arrMainSelf[0],product:product_name[0],pruduct_id:ordersSQL.rows[w].product_id, quantity:ordersSQL.rows[w].quantity, shelfes:arrOrderProductShelf});
