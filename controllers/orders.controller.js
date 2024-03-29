@@ -15,24 +15,24 @@ class ordersController {
           let arrProducts = [];
           const orderFOR = Number(orderelQ);
           ordersSQL.rows.forEach(ordersRowselW=>{
-            if(orderFOR===ordersRowselW.order){
+            if(orderFOR==ordersRowselW.order){
               let arrOrderProductShelf = [];
               let MainSelf = 0;
               productsshelfSQL.rows.forEach(productsshelelE=>{
-                if(ordersRowselW.product_id===productsshelelE.product_id&&productsshelelE.main_shelf===false){
+                if(ordersRowselW.product_id==productsshelelE.product_id&&productsshelelE.main_shelf==false){
                   shelfSQL.rows.forEach(shelfelR=>{
-                    if(shelfelR.id===productsshelelE.shelf_id){
+                    if(shelfelR.id==productsshelelE.shelf_id){
                       arrOrderProductShelf.push(shelfelR.shelf_name);
                     }
                   });
                 }
-                else if(ordersRowselW.product_id===productsshelelE.product_id&&productsshelelE.main_shelf===true){
+                else if(ordersRowselW.product_id==productsshelelE.product_id&&productsshelelE.main_shelf==true){
                   MainSelf+=productsshelelE.shelf_id;
                 }
               });
               let product_name = '';
               productsSQL.rows.forEach(productselE=>{
-                if(ordersRowselW.product_id===productselE.id){
+                if(ordersRowselW.product_id==productselE.id){
                   product_name+=productselE.product;
                 }
                 
@@ -47,7 +47,7 @@ class ordersController {
           let arrProductReturn = [];
           arrOrders.forEach(arrOrdersElW=>{
             arrOrdersElW.products.forEach(arrOrdersElWElE=>{
-              if(arrOrdersElWElE.main_shelf===shelfElQ.id){
+              if(arrOrdersElWElE.main_shelf==shelfElQ.id){
                 if(arrOrdersElWElE.shelfes.length===0){
                   arrProductReturn.push( '----'+' '+`${arrOrdersElWElE.product}` + ` (id=${arrOrdersElWElE.pruduct_id})`, `заказ ${arrOrdersElW.order}` +', '+`${arrOrdersElWElE.quantity} шт` );
                 }
