@@ -60,10 +60,10 @@ class ordersController {
             for(let e =0;e<arrOrders[w].products.length;e++){
               if(arrOrders[w].products[e].main_shelf===shelfSQL.rows[q].id){
                 if(arrOrders[w].products[e].shelfes.length===0){
-                  arrProductReturn.push( '----'+' '+`${arrOrders[w].products[e].product}` + ` (id=${arrOrders[w].products[e].pruduct_id})`, `заказ ${arrOrders[w].order}` +','+ ' '+`${arrOrders[w].products[e].quantity} шт` );
+                  arrProductReturn.push( '----'+' '+`${arrOrders[w].products[e].product}` + ` (id=${arrOrders[w].products[e].pruduct_id})`, `заказ ${arrOrders[w].order}` +', '+`${arrOrders[w].products[e].quantity} шт` );
                 }
                 else{
-                  arrProductReturn.push( '----'+' '+`${arrOrders[w].products[e].product}` + ` (id=${arrOrders[w].products[e].pruduct_id})`, `заказ ${arrOrders[w].order}` +','+ ' '+`${arrOrders[w].products[e].quantity} шт`, `доп стеллаж: ${arrOrders[w].products[e].shelfes}` );
+                  arrProductReturn.push( '----'+' '+`${arrOrders[w].products[e].product}` + ` (id=${arrOrders[w].products[e].pruduct_id})`, `заказ ${arrOrders[w].order}` +', '+`${arrOrders[w].products[e].quantity} шт`, `доп стеллаж: ${arrOrders[w].products[e].shelfes}` );
                 }
               }
             }
