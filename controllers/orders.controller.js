@@ -21,7 +21,6 @@ class ordersController {
           }
         }
         const shelfSQL = await db.query('select * from "Shelves" where "id" IN' +'('+arrShelfId.join(', ')+') ;');
-
         for(let q=0;q<order.length;q++){
           let arrProducts = [];
           const orderFOR = Number(order[q]);
