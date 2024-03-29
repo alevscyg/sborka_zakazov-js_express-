@@ -27,7 +27,7 @@ class ordersController {
           for(let w = 0 ;w<ordersSQL.rows.length;w++){
             if(orderFOR===ordersSQL.rows[w].order){
               let arrOrderProductShelf = [];
-              let arrMainSelf = [];
+              let MainSelf = 0;
               for(let e =0;e<productsshelfSQL.rows.length;e++){
                 if(ordersSQL.rows[w].product_id===productsshelfSQL.rows[e].product_id){
                   if(productsshelfSQL.rows[e].main_shelf===false){
@@ -38,17 +38,17 @@ class ordersController {
                     }
                   }
                   else{
-                    arrMainSelf.push(productsshelfSQL.rows[e].shelf_id);
+                    MainSelf+=productsshelfSQL.rows[e].shelf_id;
                   }
                 }
               }
-              let product_name = [];
+              let product_name = '';
               for(let e =0;e<productsSQL.rows.length;e++){
                 if(ordersSQL.rows[w].product_id===productsSQL.rows[e].id){
-                  product_name.push(productsSQL.rows[e].product);
+                  product_name+=productsSQL.rows[e].product;
                 }
               }
-              arrProducts.push({ main_shelf:arrMainSelf[0],product:product_name[0],pruduct_id:ordersSQL.rows[w].product_id, quantity:ordersSQL.rows[w].quantity, shelfes:arrOrderProductShelf});
+              arrProducts.push({ main_shelf:MainSelf,product:product_name,pruduct_id:ordersSQL.rows[w].product_id, quantity:ordersSQL.rows[w].quantity, shelfes:arrOrderProductShelf});
             }
           }
           arrOrders.push({order:orderFOR,products:arrProducts})
