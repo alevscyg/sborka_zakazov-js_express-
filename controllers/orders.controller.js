@@ -16,7 +16,7 @@ class ordersController {
         ordersSQL.rows.forEach(ordersRowselW=>{
           if(orderFOR==ordersRowselW.order){
             let arrOrderProductShelf = [];
-            let MainSelf = 0;
+            let MainSelf;
             productsshelfSQL.rows.forEach(productsshelelE=>{
               if(ordersRowselW.product_id==productsshelelE.product_id&&productsshelelE.main_shelf==false){
                 shelfSQL.rows.forEach(shelfelR=>{
@@ -26,13 +26,13 @@ class ordersController {
                 });
               }
               else if(ordersRowselW.product_id==productsshelelE.product_id&&productsshelelE.main_shelf==true){
-                MainSelf+=productsshelelE.shelf_id;
+                MainSelf=productsshelelE.shelf_id;
               }
             });
-            let product_name = '';
+            let product_name ;
             for(let q =0;q<productsSQL.rows.length;q++){
               if(ordersRowselW.product_id==productsSQL.rows[q].id){
-                product_name+=productsSQL.rows[q].product;
+                product_name=productsSQL.rows[q].product;
                 break; 
               }
             }
