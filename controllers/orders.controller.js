@@ -59,7 +59,7 @@ class ordersController {
           arrShelfReturn.push({Стеллаж:shelfElQ.shelf_name, заказы:arrProductReturn});
         }
       });
-      res.json(arrShelfReturn)   
+      res.json(arrShelfReturn);   
   }
 }
 module.exports = new ordersController();
