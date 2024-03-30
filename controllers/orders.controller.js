@@ -13,7 +13,7 @@ class ordersController {
       let arrOrders =[];
         order.forEach(orderelQ=>{
           let arrProducts = [];
-          const orderFOR = Number(orderelQ);
+          let orderFOR = Number(orderelQ);
           ordersSQL.rows.forEach(ordersRowselW=>{
             if(orderFOR==ordersRowselW.order){
               let arrOrderProductShelf = [];
