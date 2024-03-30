@@ -30,11 +30,12 @@ class ordersController {
               }
             });
             let product_name = '';
-            productsSQL.rows.forEach(productselE=>{
-              if(ordersRowselW.product_id==productselE.id){
-                product_name+=productselE.product;
+            for(let q =0;q<productsSQL.rows.length;q++){
+              if(ordersRowselW.product_id==productsSQL.rows[q].id){
+                product_name+=productsSQL.rows[q].product;
+                break; 
               }
-            });
+            }
             arrProducts.push({ main_shelf:MainSelf,product:product_name,pruduct_id:ordersRowselW.product_id, quantity:ordersRowselW.quantity, shelfes:arrOrderProductShelf});
           }
         });
